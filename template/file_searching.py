@@ -63,9 +63,11 @@ def file_folder_search():
         
         seconds = input("Would like to make another search for a file or for a folder (Type Yes or No): ")
         if seconds.lower() == 'no': 
-            return
+            return 1
         user = input("Would like to search for a file or for a folder: ")
-    else: print('Invalid Input Please Try Again\n')  
+    else: 
+        print('Invalid Input Please Try Again\n')  
+        return -1
 
 if __name__ == '__main__':
     file_folder_search()
