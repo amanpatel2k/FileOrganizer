@@ -5,19 +5,19 @@ class File:
         self.selection = { '1': self.search, '2': None, '3': None,'4': None, '5': None, '6': None }
     
     def search(self): 
-        print('Hi')
+        pass
 
 if __name__ == '__main__':
     SELECTION = '''
-    Select an Operation to Perform
-    1. File Searching
-    2. File Renaming
-    3. File Filtering
-    4. File Sorting
-    5. File Delection 
-    6. File Compression/Decompression 
-    7. Quit
-    Enter user input: '''
+Select an Operation to Perform
+1. File Searching
+2. File Renaming
+3. File Filtering
+4. File Sorting
+5. File Delection 
+6. File Compression/Decompression 
+7. Quit
+Enter user input: '''
     
     user_input = input(SELECTION)
     
