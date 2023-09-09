@@ -24,12 +24,13 @@ class File_Search:
         elif user_input.lower() == 'name':
              # Search by File Name
             file_name = input("Enter the file you are finding: ")
+            filenames = []
             for (root, dirs, files) in os.walk(self.path): 
                 for file in files:
-                    if file_name == os.path.splitext(file)[0]:
-                        return os.path.join(root, file)
-            else: 
-                return f'File Not Found by This Name: {file_name}'
+                    if file_name.lower() == os.path.splitext(file)[0].lower() or file_name.lower() in file.lower():
+                        filenames.append(os.path.join(root, file))
+            if filenames: return filenames 
+            else: return f'File Not Found by This Name: {file_name}'
         
         else:   
             # Search by Both
@@ -66,5 +67,5 @@ def file_folder_search():
         user = input("Would like to search for a file or for a folder: ")
     else: print('Invalid Input Please Try Again\n')  
 
-# if __name__ == '__main__':
-#     file_folder_search()
+if __name__ == '__main__':
+    file_folder_search()
