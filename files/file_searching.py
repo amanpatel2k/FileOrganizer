@@ -1,6 +1,6 @@
 from dotenv import load_dotenv
 import os
-from display import display
+from .my_display import mydisplay
 
 class File_Search: 
     def __init__(self):
@@ -69,7 +69,7 @@ def file_folder_search():
         if operation: print("Your File Has Been Searched: \n")
         
         # print(operation)
-        display(operation)
+        mydisplay(operation)
     
         seconds = input("Would like to make another search for a file or for a folder (Type Yes or No): ")
         if seconds.lower() == 'no': 
@@ -78,6 +78,3 @@ def file_folder_search():
     else: 
         print('Invalid Input Please Try Again\n')  
         return
-
-if __name__ == "__main__": 
-    file_folder_search()

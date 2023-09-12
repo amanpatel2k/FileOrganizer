@@ -1,6 +1,5 @@
 # Importing Other Functionalities 
-from template.file_searching import file_folder_search
-from template.display import display
+from files.file_searching import file_folder_search
 
 class File: 
     def __init__(self): 

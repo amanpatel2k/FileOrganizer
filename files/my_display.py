@@ -1,6 +1,6 @@
 from prettytable import PrettyTable
 
-def display(data_list):
+def mydisplay(data_list):
     if not isinstance(data_list, list):
         raise TypeError("Input must be a list")
 
@@ -9,14 +9,9 @@ def display(data_list):
         return
 
     table = PrettyTable()
-    table.field_names = ["Key", "Value"]
+    table.field_names = ["#", "Absolute Path"]
 
     for index, item in enumerate(data_list, start=1):
         table.add_row([index, item])
-
-    print(table)
-
-# Example usage:
-# my_list = ["John", 30, "Engineer", "New York"]
     
-# display(my_list)
+    print(table)
