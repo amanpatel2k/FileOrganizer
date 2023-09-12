@@ -1,6 +1,6 @@
-# TODO: File Searching 
 from dotenv import load_dotenv
 import os
+from display import display
 
 class File_Search: 
     def __init__(self):
@@ -12,17 +12,20 @@ class File_Search:
         
         user_input = input("Search by name, extension, or both: ")
 
-        # Search by Extension
         if user_input.lower() == 'extension': 
+            # Search by Extension
             ext = input("Enter the extension: ")
             if ext[0] != '.': return "Invalid Syntax"
+            extension = []
             for root, dirs, files in os.walk(self.path):
                 for file in files:
                     if file.endswith(f'{ext.lower()}'):
-                        print(file)
+                        extension.append(file)
+            if extension: return extension
+            else: return f'File Not Found by This Extension: {ext}'
         
         elif user_input.lower() == 'name':
-             # Search by File Name
+            # Search by File Name
             file_name = input("Enter the file you are finding: ")
             filenames = []
             for (root, dirs, files) in os.walk(self.path): 
@@ -34,12 +37,16 @@ class File_Search:
         
         else:   
             # Search by Both
-            file_name = input("Enter the file you are finding: ")
+            file_name = input("Enter the file name you are finding: ")
             ext = input("Enter the extension of the file: ")
+            fullFiles = []
             full_file = file_name+ext
             for (root, dirs, files) in os.walk(self.path): 
-                if full_file in files:
-                    return os.path.join(root, full_file)
+                for file in files:
+                    if full_file.lower() == file.lower():
+                        fullFiles.append(os.path.join(root, file))
+                    
+            if fullFiles: return fullFiles
             else: return f'File Not Found by This Name: {file_name}'
         
     def folder(self): 
@@ -59,15 +66,18 @@ def file_folder_search():
     while user.lower() == 'file' or user.lower() == 'folder': 
         file_search = File_Search()
         operation = file_search.searchMap[user.lower()]()
-        if operation: print(operation, end='\n')
+        if operation: print("Your File Has Been Searched: \n")
         
+        # print(operation)
+        display(operation)
+    
         seconds = input("Would like to make another search for a file or for a folder (Type Yes or No): ")
         if seconds.lower() == 'no': 
-            return 1
+            return 
         user = input("Would like to search for a file or for a folder: ")
     else: 
         print('Invalid Input Please Try Again\n')  
-        return -1
+        return
 
-if __name__ == '__main__':
+if __name__ == "__main__": 
     file_folder_search()

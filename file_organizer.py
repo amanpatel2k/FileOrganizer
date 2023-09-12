@@ -1,12 +1,12 @@
 # Importing Other Functionalities 
 from template.file_searching import file_folder_search
+from template.display import display
 
 class File: 
     def __init__(self): 
         self.selection = { '1': self.search, '2': None, '3': None,'4': None, '5': None, '6': None }
     
     def search(self): 
-        print('-------------------------------------------------')
         file_folder_search()
         
 
