@@ -1,8 +1,9 @@
 # File System Organizer
 
-## TODO: 
-File Sorting, File Renaming, File Filtering, File Search, File Copy & Moving, File Deletion, File Compression/Decompression, File Preview, File Organization, Duplicate File Detection
+## TODO: (Updated)
 
-## Description
+## Description: 
+Effortlessly take command of your digital space. Our terminal-based application simplifies file organization, automates tasks based on filenames or extensions. Every action is confident and simple, elevating your productivity with ease. Download now to experience efficient file management.
 
-## Technologies and Languages
+## Technologies:
+1. Language: Python
