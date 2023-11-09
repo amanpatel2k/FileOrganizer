@@ -20,3 +20,4 @@ Effortlessly take command of your digital space. Our terminal-based application 
 
 ## Technologies:
 1. Language: Python
+2. Packages Used: 
