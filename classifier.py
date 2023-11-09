@@ -1,8 +1,8 @@
 # Dictionary of Files Based on Extensions
-import os
+import os, shutil
 from collections import defaultdict
 
-def organize_ext(allFiles):
+def organize_ext(path, allFiles, directories):
     master = defaultdict(list)
     
     for file in allFiles:
@@ -14,13 +14,20 @@ def organize_ext(allFiles):
         for key, values in directories.items():
             if extension in values:
                 master[key].append(f'{path}/{file}')
+                break
+        else:
+            master["OTHER"].append(f'{path}/{file}')
             
     return master
-        
+
+def check_create_folders(path, folders):
+    for folder in folders: 
+        # Check if foldere exist
+        if not os.path.exists(f'{path}/{folder.title()}'): 
+            os.makedirs(f'{path}/{folder.title()}')
+
     
-if __name__ == '__main__':
-    path = '/Users/amanpatel/Downloads'
-    
+def main_process(path):
     directories = {
         "PICTURES": (".jpeg", ".jpg", ".tiff", ".gif", ".bmp", ".png", ".bpg",
                    "svg", ".heif", ".psd", '.heic'),
@@ -28,23 +35,31 @@ if __name__ == '__main__':
                    ".mng",".qt", ".mpg", ".mpeg", ".3gp", ".mkv"),
         "DOCUMENTS": (".oxps", ".epub", ".pages", ".docx", ".doc", ".fdf",
                       ".ods", ".odt", ".pwi", ".xsn", ".xps", ".dotx", ".docm", ".dox", ".json", ""
-                      ".rvg", ".rtf", ".rtfd", ".wpd", ".xls", ".xlsx", ".ppt", "pptx", ".pdf", ".txt", ".pages"),
+                      ".rvg", ".rtf", ".rtfd", ".wpd", ".xls", ".xlsx", ".ppt", ".pptx", ".pdf", ".txt", ".pages"),
         "ARCHIVES": (".a", ".ar", ".cpio", ".iso", ".tar", ".gz", ".rz", ".7z",
                      ".dmg", ".rar", ".xar", ".zip"),
         "AUDIO": (".aac", ".aa", ".aac", ".dvf", ".m4a", ".m4b", ".m4p",
                   ".mp3", ".msv", "ogg", "oga", ".raw", ".vox", ".wav", ".wma"),
-        "PROGRAMS": ".exe",
+        "PROGRAMS": (".exe", ".py"),
         "OTHER": ""
     }
 
     # List of files to organize
-    list_of_files = [file for file in os.listdir(path) if os.path.isfile(os.path.join(path, file))]
+    list_of_files = [file for file in os.listdir(path) if os.path.isfile(os.path.join(path, file)) and not file.startswith(".")]
+    
+    # Check or create new folders
+    check_create_folders(path, directories.keys())
+    
     
     # Organize files by extension 
-    full_path_files = [f'{path}/{file}' for file in os.listdir(path) if os.path.isfile(os.path.join(path, file))]
-    master_list = organize_ext(list_of_files)
+    master_list = organize_ext(path, list_of_files, directories)
     
     
+    # Organize the folders
+    for folder in master_list: 
+        for files in master_list[folder]:
+            shutil.move(os.path.join(path, files), f'{path}/{folder.title()}')
+
     
 
     
