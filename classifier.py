@@ -61,7 +61,7 @@ def main_process(path):
             shutil.move(os.path.join(path, files), f'{path}/{folder.title()}')
 
     
-
+    return True 
     
 
     

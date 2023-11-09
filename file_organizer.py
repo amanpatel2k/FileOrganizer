@@ -1,6 +1,6 @@
 # Importing Other Functionalities 
-import os
-import sys
+import os, sys
+from classifier import main_process
 
 if __name__ == '__main__':
     SELECTION= '''Enter a valid path to organize your files: '''
@@ -12,10 +12,9 @@ if __name__ == '__main__':
         sys.exit()
     
     
-    # List of files to organize
-    list_of_files = os.listdir(user_input)
-    
-    # Perform the automation
+    print('Begin Scanning!')
+    if main_process(user_input): 
+        print("Done")
     
 
     
