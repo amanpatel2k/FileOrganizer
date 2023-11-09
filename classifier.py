@@ -20,11 +20,12 @@ def organize_ext(path, allFiles, directories):
             
     return master
 
-def check_create_folders(path, folders):
+def check_create_folders(path, folders, directories):
     for folder in folders: 
-        # Check if foldere exist
-        if not os.path.exists(f'{path}/{folder.title()}'): 
-            os.makedirs(f'{path}/{folder.title()}')
+        if len(directories[folder]):
+            # Check if foldere exist
+            if not os.path.exists(f'{path}/{folder.title()}'): 
+                os.makedirs(f'{path}/{folder.title()}')
 
     
 def main_process(path):
@@ -46,14 +47,12 @@ def main_process(path):
 
     # List of files to organize
     list_of_files = [file for file in os.listdir(path) if os.path.isfile(os.path.join(path, file)) and not file.startswith(".")]
-    
-    # Check or create new folders
-    check_create_folders(path, directories.keys())
-    
-    
+
     # Organize files by extension 
     master_list = organize_ext(path, list_of_files, directories)
     
+    # Check or create new folders
+    check_create_folders(path, directories.keys(), master_list)
     
     # Organize the folders
     for folder in master_list: 
