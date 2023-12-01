@@ -18,4 +18,4 @@ Organizing files in 'C:/Users/User/Downloads':
 ```
 
 ## Technologies:
-1. Language: Python
+Language: Python
